@@ -1,0 +1,47 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tuum.com/tuum-developer-docs/getting-started/notification-api/webhooks
+spec_type: Webhooks
+docs: https://docs.tuum.com/tuum-developer-docs/api-cookbooks/webhooks/webhooks
+description: >-
+  Tuum's Notification API delivers near-real-time events by pushing HTTP POST
+  requests with JSON payloads to a subscriber-provided endpoint. Consumers
+  discover available webhooks, subscribe to event/notification types (optionally
+  scoped by channel code), and manage (update/pause/unsubscribe) subscriptions.
+  No AsyncAPI document is published by the provider; this captures the documented
+  webhook surface (type: Webhooks).
+delivery:
+  transport: https
+  method: POST
+  payload: application/json
+  direction: outbound (Tuum -> subscriber)
+subscription:
+  discover: find available webhooks
+  subscribe_by: [notification type + channel code, notification id]
+  manage: [subscribe, update subscription, enable/disable notification, unsubscribe, search subscribed]
+  docs: https://docs.tuum.com/tuum-developer-docs/api-cookbooks/webhooks/webhooks
+security_options:
+  # Applied by Tuum to outbound webhook requests; arranged via customer success manager (not self-service).
+  options:
+    - bearer-token
+    - custom-auth-header
+    - oauth2-client-credentials
+    - hmac-signature
+    - mtls
+  docs: https://docs.tuum.com/tuum-developer-docs/getting-started/notification-api/webhooks/webhook-security-options
+event_domains:
+  # Payload families documented under api-cookbooks/webhooks/webhooks-with-payloads
+  - person
+  - account
+  - deposit
+  - payments
+  - aml-processes
+  - loan
+  - card
+  - debt
+  - finance
+best_practices:
+  reference: https://docs.tuum.com/tuum-developer-docs/getting-started/notification-api/webhooks/best-practices-for-handling-webhooks
+  notes: >-
+    Docs cover idempotent handling / preventing duplication, error handling and
+    recovery, and verifying request authenticity via the configured security option.

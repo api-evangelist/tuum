@@ -1,0 +1,50 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tuum.com/tuum-developer-docs/getting-started/api-call-essentials
+docs: https://docs.tuum.com/tuum-developer-docs/getting-started/api-call-essentials/header-parameters/other-parameters
+authentication:
+  style: jwt-header
+  header: x-auth-token
+  see: authentication/tuum-authentication.yml
+idempotency:
+  supported: true
+  mechanism: request-id-header
+  header: x-request-id
+  value_format: UUID (RFC 4122)
+  scope: POST requests (deduplication / safe retry)
+  behaviour: >-
+    When the same x-request-id is reused, Tuum returns the same HTTP status and
+    payload it returned for the first successful request with that ID, regardless
+    of the body — so retries do not create duplicate resources. Missing/null/empty
+    x-request-id disables the duplication check and each POST is processed
+    independently.
+  caveat: >-
+    Duplication controls are not enabled on all POST endpoints; coverage is
+    endpoint-specific (confirm with Tuum).
+  docs: https://docs.tuum.com/tuum-developer-docs/api-cookbooks/header-parameters/preventing-duplication
+  see: errors/
+versioning:
+  scheme: uri-path-per-api
+  pattern: https://[api-name].[environment].tuumplatform.com/api/v{n}/...
+  notes: >-
+    Each Tuum API module is versioned independently in its URL path (observed
+    v1 for auth-api, v4 for account-api). Deprecation is signalled per RFC 8594.
+  see: lifecycle/tuum-lifecycle.yml
+localisation:
+  header: Accept-Language
+  value_format: ISO 639-1 two-letter lowercase code
+  scope: Translates explanatory text in error messages (defaults to English).
+  docs: https://docs.tuum.com/tuum-developer-docs/getting-started/api-call-essentials/header-parameters/other-parameters
+base_url:
+  pattern: https://[api-name].[environment].tuumplatform.com
+  per_api_hosts: true
+  example: https://account-api.sandbox.tuumplatform.com/api/v4/persons/{personId}/accounts
+  docs: https://docs.tuum.com/tuum-developer-docs/getting-started/api-call-essentials/base-url
+  see: sandbox/tuum-sandbox.yml
+webhooks:
+  supported: true
+  delivery: outbound POST (JSON) to subscriber URL
+  see: asyncapi/tuum-notification-webhooks.yml
+deprecation:
+  signal: Sunset response header (RFC 8594)
+  see: lifecycle/tuum-lifecycle.yml

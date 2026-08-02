@@ -1,7 +1,22 @@
 aid: tuum
 name: Tuum
-description: Tuum is a company surfaced as a portfolio company of speedinvest and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 10
+  pass: local-v1
+description: >-
+  Tuum is a cloud-native, modular core banking platform that lets banks,
+  fintechs, and other financial institutions launch and modernise financial
+  products without legacy constraints. Its API-first platform is organised into
+  independent modules — accounts, payments, cards, lending, deposits, and more —
+  covering Banking-as-a-Service, payments processing, lending, and Islamic
+  banking. Developers integrate over per-module REST APIs (auth-api, person-api,
+  account-api, payment-api, card-api, loan-api, deposit-api, notification-api),
+  authenticating with a JWT presented in the x-auth-token header (with a
+  standards OAuth 2.0 authorization server also available), and receive
+  near-real-time events via the Notification API's webhooks. Founded in Estonia
+  (formerly Modularbank), Tuum is backed by investors including Speedinvest.
 url: https://raw.githubusercontent.com/api-evangelist/tuum/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,12 +24,92 @@ x-backed-by:
 - speedinvest
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+image: https://tuum.com/wp-content/uploads/2023/07/img-coverTuum.png
 tags:
 - Company
-apis: []
+- Core Banking
+- Banking as a Service
+- Payments
+- Lending
+- Cards
+- Fintech
+- Financial Services
+- API
+apis:
+- name: Tuum Core Banking API
+  description: >-
+    Tuum's modular, API-first core banking platform. Per-module REST APIs
+    (auth, person, employee, account, payment, card, loan, deposit, data-import,
+    notification) versioned independently in the URL path, authenticated with a
+    JWT in the x-auth-token header, with a public sandbox and webhook events.
+  humanURL: https://developer.tuumplatform.com/explore
+  baseURL: https://auth-api.sandbox.tuumplatform.com
+  tags:
+  - Core Banking
+  - Payments
+  - Cards
+  - Lending
+  properties:
+  - type: Documentation
+    url: https://docs.tuum.com/tuum-developer-docs
+  - type: APIReference
+    url: https://developer.tuumplatform.com/explore
+  - type: GettingStarted
+    url: https://docs.tuum.com/tuum-developer-docs/getting-started/get-started
+common:
+- type: DomainSecurity
+  url: security/tuum-domain-security.yml
+- type: Website
+  url: https://tuum.com/
+- type: DeveloperPortal
+  url: https://developer.tuumplatform.com/
+- type: Documentation
+  url: https://docs.tuum.com/tuum-developer-docs
+- type: APIReference
+  url: https://developer.tuumplatform.com/explore
+- type: GettingStarted
+  url: https://docs.tuum.com/tuum-developer-docs/getting-started/get-started
+- type: Blog
+  url: https://tuum.com/blog/
+- type: Support
+  url: https://tuum.com/get-in-touch/
+- type: PrivacyPolicy
+  url: https://tuumplatform.com/privacy-policy/
+- type: Authentication
+  url: authentication/tuum-authentication.yml
+- type: Conventions
+  url: conventions/tuum-conventions.yml
+- type: Idempotency
+  url: conventions/tuum-conventions.yml
+- type: Lifecycle
+  url: lifecycle/tuum-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/tuum-lifecycle.yml
+- type: Sandbox
+  url: sandbox/tuum-sandbox.yml
+- type: Webhooks
+  url: asyncapi/tuum-notification-webhooks.yml
+- type: Conformance
+  url: conformance/tuum-conformance.yml
+- type: WellKnown
+  url: well-known/tuum-well-known.yml
+- type: LLMsTxt
+  url: llms/tuum-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

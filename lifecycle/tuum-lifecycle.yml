@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tuum.com/tuum-developer-docs/getting-started/api-call-essentials/detecting-deprecated-endpoints
+versioning:
+  scheme: uri-path-per-api
+  pattern: https://[api-name].[environment].tuumplatform.com/api/v{n}/...
+  notes: Each API module versioned independently in the URL path (e.g. auth-api v1, account-api v4).
+deprecation:
+  policy: sunset-header
+  sunset_header: true
+  standard: RFC 8594
+  header_format: 'HTTP-date, e.g. "Sunset: Wed, 11 Feb 2026 00:00:00 GMT"'
+  behaviour: >-
+    A deprecated endpoint returns a Sunset response header whose value is the
+    date after which the endpoint is considered obsolete and may be removed.
+    Active endpoints return no Sunset header. Clients are advised to monitor
+    responses and migrate before the stated date.
+  coverage: >-
+    Sunset headers are currently returned for all deprecated endpoints in the
+    Account, Card, and Loan modules; other modules are being migrated to the
+    deprecation flow.
+  docs: https://docs.tuum.com/tuum-developer-docs/getting-started/api-call-essentials/detecting-deprecated-endpoints
+status_page: null      # no public status page found
+sla: null              # no public SLA found (Tuum is a licensed/contracted core-banking platform)

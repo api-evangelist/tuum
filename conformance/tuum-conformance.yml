@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tuum.com/tuum-developer-docs
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: RFC 8414 authorization server metadata published at /.well-known/oauth-authorization-server (well-known/tuum-oauth-authorization-server.json)
+  - id: rfc8414-oauth-authorization-server-metadata
+    conforms: true
+    evidence: well-known/tuum-oauth-authorization-server.json
+  - id: rfc7636-pkce
+    conforms: true
+    evidence: code_challenge_methods_supported [S256]
+  - id: rfc9449-dpop
+    conforms: true
+    evidence: dpop_signing_alg_values_supported present in AS metadata
+  - id: rfc8705-mtls-bound-tokens
+    conforms: true
+    evidence: tls_client_certificate_bound_access_tokens true; tls_client_auth / self_signed_tls_client_auth
+  - id: rfc8693-token-exchange
+    conforms: true
+    evidence: grant_types_supported includes urn:ietf:params:oauth:grant-type:token-exchange
+  - id: rfc8594-sunset-header
+    conforms: true
+    evidence: deprecated endpoints return a Sunset header (Account, Card, Loan modules) — lifecycle/tuum-lifecycle.yml
+  - id: rfc4122-uuid-request-id
+    conforms: true
+    evidence: x-request-id idempotency header requires UUID (RFC 4122) — conventions/tuum-conventions.yml
+  - id: idempotency
+    conforms: true
+    evidence: x-request-id POST deduplication — conventions/tuum-conventions.yml
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: not confirmed in docs (no OpenAPI captured to verify error content-type)
+notes: >-
+  Derived from Tuum's public developer docs and the live OAuth authorization
+  server metadata. No public compliance certifications (SOC 2 / ISO 27001 / PCI)
+  were found on Tuum's marketing or docs surface, so no Compliance pointer is
+  emitted.

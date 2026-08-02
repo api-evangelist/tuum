@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.tuum.com/tuum-developer-docs/getting-started/api-call-essentials/base-url
+test_vs_live:
+  model: environment-in-hostname
+  environments: [sandbox, dev, test, staging]
+  notes: >-
+    The target environment is encoded in the API hostname
+    (https://[api-name].[environment].tuumplatform.com). A public sandbox is
+    available; organisation-specific dev/test/staging base URLs are provided by
+    Tuum.
+public_sandbox:
+  base_url_pattern: https://[api-name].sandbox.tuumplatform.com
+  examples:
+    - https://auth-api.sandbox.tuumplatform.com
+    - https://person-api.sandbox.tuumplatform.com
+    - https://account-api.sandbox.tuumplatform.com
+  docs: https://docs.tuum.com/tuum-developer-docs/getting-started/api-call-essentials/base-url
+credentials:
+  model: assigned
+  notes: >-
+    API-user (employee) credentials — username + password — are assigned by team
+    Tuum or the organisation's authorised representative before development/testing.
+    The digital identity must carry the system role plus a role authorising the
+    intended endpoints. No self-service public test credentials are published; Tuum
+    does not publish magic/static test values (none fabricated here).
+  see: authentication/tuum-authentication.yml
